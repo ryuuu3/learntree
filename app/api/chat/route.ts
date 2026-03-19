@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { getMotherPrompt } from '@/lib/prompts'
 
-export const runtime = 'edge'
 
 export async function POST(req: Request) {
   try {
