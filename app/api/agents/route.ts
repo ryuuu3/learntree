@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
     const model = genAI.getGenerativeModel({
-      model: model: 'gemini-1.5-flash-8b',
+      model: 'gemini-1.5-flash-8b',
       systemInstruction: getAgentSystemPrompt(agent, mode),
     })
 
