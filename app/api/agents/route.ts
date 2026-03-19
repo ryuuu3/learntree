@@ -2,7 +2,6 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import { getAgentSystemPrompt } from '@/lib/prompts'
 import { Agent } from '@/lib/types'
 
-export const runtime = 'edge'
 
 export async function POST(req: Request) {
   try {
