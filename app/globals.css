@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Fraunces', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --color-bg: #0d1a0e;
+  --color-surface: #121f13;
+  --color-surface-2: #172019;
+  --color-border: rgba(255,255,255,0.07);
+  --color-border-hover: rgba(255,255,255,0.15);
+  --color-text: #e8f0e9;
+  --color-text-muted: #8da88f;
+  --color-accent: #4a9650;
+  --color-accent-light: #72b572;
+  --color-glow: rgba(74, 150, 80, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-hover); border-radius: 2px; }
+
+/* Prose for AI responses */
+.prose-ai {
+  line-height: 1.75;
+}
+.prose-ai p { margin-bottom: 0.75rem; }
+.prose-ai ul, .prose-ai ol { margin-left: 1.5rem; margin-bottom: 0.75rem; }
+.prose-ai ul { list-style-type: disc; }
+.prose-ai ol { list-style-type: decimal; }
+.prose-ai li { margin-bottom: 0.25rem; }
+.prose-ai strong { color: var(--color-accent-light); font-weight: 500; }
+.prose-ai h1, .prose-ai h2, .prose-ai h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-text);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.prose-ai h2 { font-size: 1.2rem; }
+.prose-ai h3 { font-size: 1.05rem; }
+.prose-ai code {
+  background: rgba(74,150,80,0.15);
+  color: var(--color-accent-light);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.prose-ai blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.prose-ai hr { border-color: var(--color-border); margin: 1rem 0; }
+
+/* Glow button */
+.btn-glow {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px var(--color-glow);
+}
+.btn-glow:hover {
+  background: var(--color-accent-light);
+  box-shadow: 0 0 30px rgba(74,150,80,0.3);
+  transform: translateY(-1px);
+}
+.btn-glow:active { transform: translateY(0); }
+
+/* Card */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--color-border-hover); }
+
+/* Typing cursor */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor::after {
+  content: '▋';
+  animation: blink 1s ease-in-out infinite;
+  color: var(--color-accent);
+  font-size: 0.8em;
+}
+
+/* Tree line decorations */
+.tree-line {
+  position: relative;
+}
+.tree-line::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-accent), transparent);
+  opacity: 0.3;
+}
+
+/* Shimmer loading */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface-2) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
