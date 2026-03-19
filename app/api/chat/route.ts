@@ -13,10 +13,12 @@ export async function POST(req: Request) {
     })
 
     // Convert messages: history is everything except last, last is the new prompt
-    const history = messages.slice(0, -1).map((m: { role: string; content: string }) => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }],
-    }))
+   const rawHistory = messages.slice(0, -1).map((m: { role: string; content: string }) => ({
+  role: m.role === 'assistant' ? 'model' : 'user',
+  parts: [{ text: m.content }],
+}))
+    const firstUserIdx = rawHistory.findIndex((m: {role: string}) => m.role === 'user')
+    const history = firstUserIdx >= 0 ? rawHistory.slice(firstUserIdx) : []
     const lastMessage = messages[messages.length - 1]
 
     const chat = model.startChat({ history })
